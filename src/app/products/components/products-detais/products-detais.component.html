@@ -1,0 +1,24 @@
+<div class="box">
+    <div class="row my-5" *ngIf="!lood">
+        <div class="col-md-5 col-ms-12 my-5">
+            <img [src]="data.image" alt="image">
+        </div>
+        <div class="col-md-7 col-ms-12 ml-5">
+            <div class="info">
+                <ul class="list-unstyled">
+                    <li><span>Title :</span>{{data.title}} </li>
+                    <li><span>category :</span>{{data.category}} </li>
+                    <li><span>Description :</span>{{data.description}} </li>
+                    <li><span>Rate :</span>{{data.rating.rate}} </li>
+                    <li><span>Count :</span>{{data.rating.count}} </li>
+                    <li><span>Price :</span>{{data.price}} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center" *ngIf="lood"> 
+        <app-spinner>
+
+        </app-spinner>
+    </div>
+</div>

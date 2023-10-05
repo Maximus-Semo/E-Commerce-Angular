@@ -1,0 +1,14 @@
+<div class="box mt-5">
+    <div class="my-2 w-25">
+        <app-select [data]="category" [title]="'Catatgory'" (selectedValue)="changeOption($event)"></app-select>
+    </div>
+    <div class="row" *ngIf="!lood">
+
+        <div class="col-md-3 col-ms-12" *ngFor="let item of prodacts" [routerLink]="['/details', item.id]">
+            <app-product [data]="item" (add)="addCartLocalStorage($event)"></app-product>
+        </div>
+    </div>
+</div>
+<div class="text-center w-100" *ngIf="lood">
+    <app-spinner></app-spinner>
+</div>  
