@@ -24,7 +24,6 @@ export class ProductsDetaisComponent implements OnInit{
     this.service.getProdacts(this.id).subscribe((res)=>{
       this.lood=false;
       this.data = res;
-      console.log(res);
     },error => {
       alert('error');
       this.lood=false;

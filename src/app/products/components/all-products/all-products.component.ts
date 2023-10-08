@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
+import { prodacts } from '../../models/models';
 
 @Component({
   selector: 'app-all-products',
@@ -7,7 +8,7 @@ import { ProductsService } from '../../service/products.service';
   styleUrls: ['./all-products.component.scss']
 })
 export class AllProductsComponent implements OnInit {
-  prodacts:any[] = [];
+  prodacts:prodacts[] = [];
   category:any[] = [];
   lood!: boolean;
   Cartprodacts:any[]=[];
@@ -48,7 +49,6 @@ export class AllProductsComponent implements OnInit {
     addCartLocalStorage(event:any){
       if("cart" in localStorage){
         this.Cartprodacts = JSON.parse(localStorage.getItem("cart")!);
-        console.log("addCartLocalStorage");
         let exist = this.Cartprodacts.find(item=> item.item.id == event.item.id)
         if (exist) {
           alert("this prodact is enter before")

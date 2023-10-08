@@ -14,7 +14,6 @@ import { AppRoutingModule } from '../app-routing.module';
     AllProductsComponent,
     ProductsDetaisComponent,
     ProductComponent,
-    
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@
     </div>
     <div class="row" *ngIf="!lood">
 
-        <div class="col-md-3 col-ms-12" *ngFor="let item of prodacts" [routerLink]="['/details', item.id]">
+        <div class="col-md-3 col-ms-12" *ngFor="let item of prodacts">
             <app-product [data]="item" (add)="addCartLocalStorage($event)"></app-product>
         </div>
     </div>
