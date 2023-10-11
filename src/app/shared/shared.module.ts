@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SelectComponent } from './select/select.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
 
@@ -22,13 +22,15 @@ import { AppRoutingModule } from '../app-routing.module';
     RouterModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
     SpinnerComponent,
     SelectComponent,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })

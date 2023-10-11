@@ -22,7 +22,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports:[
     AllProductsComponent,
-    ProductsDetaisComponent
+    ProductsDetaisComponent,
+    
   ]
 })
 export class ProductsModule { }

@@ -8,6 +8,7 @@ import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     ProductsModule,
     CartModule,
+    AdminModule,
     RouterModule.forRoot([])
   ],
   providers: [],

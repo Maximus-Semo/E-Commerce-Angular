@@ -1,0 +1,72 @@
+<div class="cartBox">
+
+    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModalCenter">Add product</button>
+    <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+            <th >Price</th>
+          </tr> 
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of prodcuts;">
+           
+            <td><img style="width: 75px;" [src]="item.image" alt=""></td>
+            <td>{{item.title}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.price}}</td>
+            <td>
+              <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#exampleModalCenter" (click)="update(item)" >Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="contnent">
+    
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" #myElement>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add prodcut</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="form" (ngSubmit)="createProdcut()">
+                <div class="col-md-4 col-sm-12">
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" placeholder="Title" formControlName="title">
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" placeholder="Price" formControlName="price">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <app-select [title]="'Categories:'" [data]="Categories" (selectedValue)="selecte($event)" [all]="false" [select]="form.value.categories"></app-select>
+                </div>
+                {{form.value.categories}}
+                <div class="col-md-4 col-sm-12">
+                  <label for="image">Image:</label>
+                  <img [src]="base64Image" alt="" style="width: 75px; height: 60px;">
+                  <input type="file" id="image" (change)="onFileSelected($event)" formControlName="image"> 
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <label for="description">Description</label>
+                  <textarea id="description" cols="30" rows="10" placeholder="Type here...." formControlName="description"></textarea>                  
+                </div>
+                  <div class="d-flex justify-contnent-end mt-3" >
+                    <button type="submit" class="btn btn-success" [disabled]="!form.valid">Add product</button>
+                  </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>

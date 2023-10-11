@@ -1,0 +1,102 @@
+<div class="cartBox">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="">Start Date</label>
+                <input type="date" formControlName="start" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <label for="">End Date</label>
+                <input type="date" formControlName="end" class="form-control">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-success" (click)="applyFilter()">Apply</button>
+            </div>
+        </div>
+    </form>
+        <table class="text-danger card-header col-10">
+            <thead class="container container">
+                <tr>
+                    <th></th>
+                    <th >Date</th>
+                    <th>Quantitiy</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of cartOrder; let i = index">
+            <td></td>
+            <td>{{item.date | date:"short"}}</td>
+            <td>{{ item.products[0].quantity }}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteItem(i)">Delete</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="view(i)">
+                    View
+                </button>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <!-- <th>Totla : {{totalItem}}</th> -->
+            </tr>
+        </tfoot>
+
+    </table>
+    
+      
+    <!-- Button trigger modal -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Cart Detils</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th style="width:25%">Qunitity</th>
+                                <th>Totla</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of cartsView">
+                                <td><img src="{{item.item.image}}" alt=""></td>
+                                <td> {{item.item.title}}</td>
+                                <td>{{item.item.price}} L.E</td>
+                                <td>{{item.item.quantity}}</td>
+                                <td>{{item.item.price * item.quantity}}</td> 
+                            </tr>
+                        </tbody>
+                        <!-- <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>totla:  {{total | currency}}</th>
+                            </tr>
+                        </tfoot> -->
+                    </table>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+</div>
