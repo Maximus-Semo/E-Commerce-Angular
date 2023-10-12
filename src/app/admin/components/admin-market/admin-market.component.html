@@ -1,6 +1,6 @@
 <div class="cartBox">
 
-    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModalCenter">Add product</button>
+    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModalCenter" (click)="clearForm()">Add product</button>
     <table class="table table-striped ">
         <thead>
           <tr>
@@ -37,7 +37,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form [formGroup]="form" (ngSubmit)="createProdcut()">
+              <form [formGroup]="form">
                 <div class="col-md-4 col-sm-12">
                   <label for="title">Title:</label>
                   <input type="text" id="title" placeholder="Title" formControlName="title">
@@ -53,7 +53,7 @@
                 {{form.value.categories}}
                 <div class="col-md-4 col-sm-12">
                   <label for="image">Image:</label>
-                  <img [src]="base64Image" alt="" style="width: 75px; height: 60px;">
+                  <img src="{{base64Image}}" alt="" id="selectedImage" style="width: 75px; height: 60px;">
                   <input type="file" id="image" (change)="onFileSelected($event)" formControlName="image"> 
                 </div>
                 <div class="col-md-4 col-sm-12">
@@ -61,7 +61,8 @@
                   <textarea id="description" cols="30" rows="10" placeholder="Type here...." formControlName="description"></textarea>                  
                 </div>
                   <div class="d-flex justify-contnent-end mt-3" >
-                    <button type="submit" class="btn btn-success" [disabled]="!form.valid">Add product</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!form.valid" *ngIf="showsBtn" (click)="createProdcut()" >Add product</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!form.valid" *ngIf="!showsBtn" (click)="putProduct()">Update product</button>
                   </div>
                   </form>
             </div>

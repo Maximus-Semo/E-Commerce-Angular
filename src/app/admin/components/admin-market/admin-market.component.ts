@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/products/service/products.service';
 import { ServiceAdmin } from '../../service/service.admin';
+import { SelectorListContext } from '@angular/compiler';
 
 @Component({
   selector: 'app-admin-market',
@@ -10,8 +11,9 @@ import { ServiceAdmin } from '../../service/service.admin';
 })
 export class AdminMarketComponent implements OnInit{
   prodcuts:any=[];
+  showsBtn:boolean = true;
   form!:FormGroup;
-  base64Image!: string ;
+  base64Image!: string;
   Categories:any=[];
   @ViewChild('myElement') myElement!: ElementRef;
 
@@ -20,10 +22,11 @@ export class AdminMarketComponent implements OnInit{
   ngOnInit(): void {
     this.getProdcuts();
     this.form = this.build.group({
+      id:[''],
       title:['',Validators.required],
       price:['',Validators.required],
       categories:['',Validators.required],
-      image:['',Validators.required],
+      image:[],
       description:['',Validators.required],
     });
     this.Service.getAllCategory().subscribe(res=>{
@@ -48,6 +51,7 @@ export class AdminMarketComponent implements OnInit{
     reader.readAsDataURL(file);
     console.log(this.base64Image);
   }
+
   selecte(event:any){
     this.form.get('categories')?.setValue(event.target.value);
     // console.log(this.form.get('categories')?.value);
@@ -55,25 +59,37 @@ export class AdminMarketComponent implements OnInit{
   createProdcut(){
     let model = this.form.value;
     this.serviceAd.createProdcut(model).subscribe(res=>{
-      alert("data resend Success");
       this.form.reset();
+      alert("data resend Success");
     },err=>{
       console.log(err);
     })
   }
 
-  update(item:any){
-    console.log(item);
+  update(item:any): void{
+    this.showsBtn = false;
+    this.base64Image = "";
     this.form.patchValue({
+      id:item.id,
       title:item.title,
       price:item.price,
       categories:item.category,
-      // image:item.image,
+      image:this.base64Image,
       description:item.description,
     })
     this.base64Image = item.image;
-    console.log(this.form.get("categories")?.value);
   }
 
-
+  clearForm() : void{
+    this.showsBtn = true;
+    this.form.reset();
+  }
+  putProduct(){
+    let model = this.form.value;
+    this.serviceAd.updateDate(model).subscribe(res=>{
+      // console.log(res);
+    },err=>{
+      console.log(err);
+    })
+  }
 }

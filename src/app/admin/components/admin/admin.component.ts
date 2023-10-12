@@ -30,7 +30,7 @@ export class AdminComponent implements OnInit{
   applyFilter(){
     let data = this.form.value;
     this.service.getProducts(data).subscribe((res:any)=>{
-      // console.log("this all applyFilter date" , res);
+       console.log("this all applyFilter date" , res);
     })
   }
   deleteItem(index:number){

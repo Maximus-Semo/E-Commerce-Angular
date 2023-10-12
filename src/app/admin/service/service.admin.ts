@@ -18,10 +18,18 @@ export class ServiceAdmin {
       return this.http.get(environment.apiUrl + "carts");
     }
   }
+
   deleteProduct(id:number){
     return this.http.delete(environment.apiUrl + "products/" + id);
   }
+
   createProdcut(Model:any){
     return this.http.post(environment.apiUrl + "products", Model);
   }
+
+  updateDate(Model:any){
+    console.log(Model.id);
+    return this.http.put(environment.apiUrl + "products/" + Model.id, Model);
+  }
+
 }

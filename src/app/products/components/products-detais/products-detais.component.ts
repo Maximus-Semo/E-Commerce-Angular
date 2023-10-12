@@ -22,11 +22,11 @@ export class ProductsDetaisComponent implements OnInit{
   getSingleProdacts(){
     this.lood=true;
     this.service.getProdacts(this.id).subscribe((res)=>{
-      this.lood=false;
+      this.lood = false;
       this.data = res;
     },error => {
       alert('error');
-      this.lood=false;
+      this.lood = false;
     })
   }
 }
